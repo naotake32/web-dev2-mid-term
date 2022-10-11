@@ -1,35 +1,6 @@
-// const btn = document.querySelector(".productBtn");
-// const cart = document.querySelector(".cart-icon"); 
-// const wrapper = document.querySelector(".list");
-// const list = document.querySelector(".list");
-// const productsData = fetch('https://fakestoreapi.com/products?limit=4')
-// .then(res=>res.json())
-// .then(json=>console.log(json))
-
-// function handleOrder(pro, pri){
-//     ordered.push
-// }
-
-// btn.addEventListener("click", () => {
-//     console.log(productsData);
-// })
-
-// const getProducts = async() =>{
-//     const productText = await productsData.map((el, id) => {
-//     `<li class="case-content">
-//         <p>
-//         <img src="${el[id].image}" alt="">
-//         </p>
-//         <h3 class="case-content__title">${el[id].title}</h3>
-//         <p class="case-content__text">${el[id].price}$</p>
-//         <button href="#" class="productBtn">Add</button>
-//     </li>`
-//     })
-//     return list.innerHTML = productText;
-
-// }
-
-// window.addEventListener("DOMContentLoaded", getProducts)
+const cart = document.querySelector('.cart-icon');
+const quInp = document.querySelectorAll('.cart-quantity-input');
+let cartCounter = 0; 
 
 if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready)
@@ -112,13 +83,17 @@ function addItemToCart(title, price, imageSrc) {
         </div>
         <span class="cart-price cart-column">${price}</span>
         <div class="cart-quantity cart-column">
-            <input class="cart-quantity-input" type="number" value="1">
+            <input id="${title}" class="cart-quantity-input" type="number" value="1">
             <button class="btn btn-danger" type="button">REMOVE</button>
         </div>`
     cartRow.innerHTML = cartRowContents
     cartItems.append(cartRow)
     cartRow.getElementsByClassName('btn-danger')[0].addEventListener('click', removeCartItem)
     cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged)
+    cartCounter ++;
+    console.log(cartCounter);
+    let indicator = ` <img class="cart"  src="./images/cart-icon.svg" alt=""><p>(${cartCounter})</p>`
+    cart.innerHTML = indicator;
 }
 
 function updateCartTotal() {
@@ -130,7 +105,13 @@ function updateCartTotal() {
         let priceElement = cartRow.getElementsByClassName('cart-price')[0]
         let quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0]
         let price = parseFloat(priceElement.innerText.replace('$', ''))
-        let quantity = quantityElement.value
+        let quantity = quantityElement.value;
+        console.log(typeof quantity);
+        let quanInt = parseInt(quantity);
+        let totalQuan = 0;
+        totalQuan = totalQuan + quanInt;
+        console.log(cartCounter);
+        cart.innerHTML = ` <img class="cart"  src="./images/cart-icon.svg" alt=""><p>(${totalQuan})</p>`;
         total = total + (price * quantity)
     }
     total = Math.round(total * 100) / 100

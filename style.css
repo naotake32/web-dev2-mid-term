@@ -239,7 +239,7 @@
   .header-wrap .header-menu ul li:hover {
     opacity: 0.5;
   }
-  .header-wrap .header-menu ul li .cart-icon {
+  .header-wrap .header-menu ul li.cart-icon > .cart {
     width: 50px;
     height: 50px;
   }
