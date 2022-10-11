@@ -100,6 +100,7 @@ function updateCartTotal() {
     let cartItemContainer = document.getElementsByClassName('cart-items')[0]
     let cartRows = cartItemContainer.getElementsByClassName('cart-row')
     let total = 0
+    let totalQuan = 0;
     for (let i = 0; i < cartRows.length; i++) {
         let cartRow = cartRows[i]
         let priceElement = cartRow.getElementsByClassName('cart-price')[0]
@@ -108,7 +109,7 @@ function updateCartTotal() {
         let quantity = quantityElement.value;
         console.log(typeof quantity);
         let quanInt = parseInt(quantity);
-        let totalQuan = 0;
+        
         totalQuan = totalQuan + quanInt;
         console.log(cartCounter);
         cart.innerHTML = ` <img class="cart"  src="./images/cart-icon.svg" alt=""><p>(${totalQuan})</p>`;
