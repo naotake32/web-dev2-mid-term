@@ -1,0 +1,8 @@
+@media (max-width: 960px) {
+    @import 'breakpoints/base.scss';
+}
+
+@media (min-width: 961px) {
+    @import 'breakpoints/960up.scss';
+}
+
